@@ -285,6 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 858fd666a623d9445b45459a00451ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxAsteroids: 3
   asteroidSpawnDelay: 2
   asteroidSpawnY: 350
   asteroidSpawnX: 500

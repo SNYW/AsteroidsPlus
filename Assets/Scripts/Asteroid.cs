@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using Random = UnityEngine.Random;
 
 public class Asteroid : MonoBehaviour
@@ -19,7 +20,7 @@ public class Asteroid : MonoBehaviour
    private Rigidbody2D _rb;
    private bool _hasBeenVisible;
    private Camera _mainCam;
-   private float radius;
+   private float _radius;
 
    private void Awake()
    {
@@ -39,7 +40,7 @@ public class Asteroid : MonoBehaviour
       _hasBeenVisible = false;
       GenerateAsteroid();
       InitCollider();
-      InitForces();
+      InitForces(Vector2.zero);
    }
 
    private void Update()
@@ -58,7 +59,7 @@ public class Asteroid : MonoBehaviour
       _rb.velocity = Vector2.zero;
       _rb.angularVelocity = 0;
       
-      if(!useCurrentRadius) radius = minMaxRadius.RandomValue();
+      if(!useCurrentRadius) _radius = minMaxRadius.RandomValue();
       var pointAmount = minMaxPoints.RandomValue();
 
       _lr.positionCount = (int)pointAmount;
@@ -70,8 +71,8 @@ public class Asteroid : MonoBehaviour
       {
 
          Vector2 pointPos = new Vector2(
-            Mathf.Cos(angle)*radius + minMaxPosOffset.RandomValue(), 
-            Mathf.Sin(angle)*radius + minMaxPosOffset.RandomValue()
+            Mathf.Cos(angle)*_radius + minMaxPosOffset.RandomValue(), 
+            Mathf.Sin(angle)*_radius + minMaxPosOffset.RandomValue()
          );
 
          var distanceOffset = ((Vector2)transform.position - pointPos).normalized * minMaxDistanceOffset.RandomValue();
@@ -81,7 +82,7 @@ public class Asteroid : MonoBehaviour
          angle += angleOffset;
       }
 
-      _rb.mass = radius / 10;
+      _rb.mass = _radius / 10;
    }
 
    private void InitCollider()
@@ -92,10 +93,10 @@ public class Asteroid : MonoBehaviour
       _pc.SetPath(0, positions.Select(v => new Vector2(v.x, v.y)).ToArray());
    }
 
-   private void InitForces()
+   private void InitForces(Vector2 target)
    {
       var randomOffset = new Vector2(Random.Range(-100, 100), Random.Range(-100, 100));
-      var dirToCentre = Vector2.zero+randomOffset - (Vector2)transform.position;
+      var dirToCentre =target+randomOffset - (Vector2)transform.position;
 
       _rb.AddForce(dirToCentre * (_rb.mass * minMaxInitSpeed.RandomValue()), ForceMode2D.Force);
       var balancedRange = new RangeFloat(
@@ -105,15 +106,17 @@ public class Asteroid : MonoBehaviour
    }
 
    public void Hit()
-   { 
-      AsteroidManager.SpawnChildAsteroids((int)radius/10);
+   {
+      if (_radius > 20)
+         AsteroidManager.SpawnChildAsteroids((int)_radius/20, (Vector2)transform.position);
       AsteroidManager.OnAsteroidDestroy(this);
    }
 
    public void InitAsChild(float radiusOverride)
    {
-      radius = radiusOverride;
+      _radius = radiusOverride;
       GenerateAsteroid(true);
+      InitCollider();
+      InitForces(transform.position);
    }
-
 }

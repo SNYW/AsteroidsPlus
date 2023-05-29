@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d66311f2fbe0c240b3c1444a25a98d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 500
-  lifetime: 0.15
+  speed: 200
+  lifetime: 0.6
 --- !u!212 &7018417165153830543
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -139,7 +139,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0

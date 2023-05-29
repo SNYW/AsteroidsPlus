@@ -16,18 +16,21 @@ public static class AsteroidManager
     }
 
     
-    public static void SpawnAsteroid(Vector3 position)
+    public static void SpawnAsteroid(Vector3 position, bool overrideRadius = false, float radius = 0)
     {
-        var asteroid = _asteroidPool.GetPooledObject();
+        var asteroid = _asteroidPool.GetPooledObject().GetComponent<Asteroid>();
         asteroid.transform.position = position;
-        asteroid.SetActive(true);
+        asteroid.gameObject.SetActive(true);
+        if(overrideRadius) asteroid.InitAsChild(radius);
     }
 
-    public static void SpawnChildAsteroids(int amount)
+    public static void SpawnChildAsteroids(int amount, Vector2 position)
     {
+        if(amount <= 1) return;
         for (int i = 0; i < amount; i++)
         {
-            SpawnAsteroid(GetSafeSpawnPosition());
+            var randomOffset = new Vector2(Random.Range(-50, 50), Random.Range(-50, 50));
+            SpawnAsteroid(position+randomOffset, true, 20);
         }
     }
 

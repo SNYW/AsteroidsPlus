@@ -56,6 +56,11 @@ namespace GameData
             }
         }
 
+        public int GetActiveAmount()
+        {
+            return _pool.Count(o => o.activeInHierarchy);
+        }
+
         public enum ObjectPoolName
         {
             Asteroids,
