@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2566690440135661138}
   - component: {fileID: 2028242116}
   - component: {fileID: 2028242117}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Asteroid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minMaxRadius:
-    min: 15
-    max: 55
+    min: 10
+    max: 60
   minMaxPoints:
     min: 7
     max: 10
@@ -65,6 +65,7 @@ MonoBehaviour:
   minMaxInitTorque:
     min: -50
     max: 50
+  minSplitRadius: 10
 --- !u!60 &2028242116
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -126,7 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7802837509605635136}
   - component: {fileID: 6151637314023093348}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}

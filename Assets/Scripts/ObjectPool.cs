@@ -59,8 +59,8 @@ namespace GameData
         public enum ObjectPoolName
         {
             Asteroids,
-            Bullet,
-            Missile
+            Bullets,
+            Missiles
         }
     }
 }

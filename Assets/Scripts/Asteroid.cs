@@ -12,12 +12,14 @@ public class Asteroid : MonoBehaviour
    [SerializeField] private RangeFloat minMaxDistanceOffset;
    [SerializeField] private RangeFloat minMaxInitSpeed;
    [SerializeField] private RangeFloat minMaxInitTorque;
+   [SerializeField] private float minSplitRadius;
    
    private LineRenderer _lr;
    private PolygonCollider2D _pc;
    private Rigidbody2D _rb;
    private bool _hasBeenVisible;
    private Camera _mainCam;
+   private float radius;
 
    private void Awake()
    {
@@ -51,12 +53,12 @@ public class Asteroid : MonoBehaviour
       }
    }
 
-   private void GenerateAsteroid()
+   private void GenerateAsteroid(bool useCurrentRadius = false)
    {
       _rb.velocity = Vector2.zero;
       _rb.angularVelocity = 0;
       
-      var radius = minMaxRadius.RandomValue();
+      if(!useCurrentRadius) radius = minMaxRadius.RandomValue();
       var pointAmount = minMaxPoints.RandomValue();
 
       _lr.positionCount = (int)pointAmount;
@@ -101,4 +103,17 @@ public class Asteroid : MonoBehaviour
          Random.Range(minMaxInitTorque.max, minMaxInitTorque.max / 2));
       _rb.AddTorque(balancedRange.RandomValue()*_rb.mass, ForceMode2D.Impulse);
    }
+
+   public void Hit()
+   { 
+      AsteroidManager.SpawnChildAsteroids((int)radius/10);
+      AsteroidManager.OnAsteroidDestroy(this);
+   }
+
+   public void InitAsChild(float radiusOverride)
+   {
+      radius = radiusOverride;
+      GenerateAsteroid(true);
+   }
+
 }

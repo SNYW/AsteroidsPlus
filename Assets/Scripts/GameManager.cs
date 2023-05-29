@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
    private void Awake()
    {
       ObjectPoolManager.InitPools();
+      AsteroidManager.Init(asteroidSpawnX, asteroidSpawnY);
    }
 
    private void Start()
@@ -28,24 +29,10 @@ public class GameManager : MonoBehaviour
 
    private IEnumerator SpawnAsteroid()
    {
-      var alternateY = true;
       while(gameState == GameState.Playing)
       {
-         var spawnPos = new Vector2(
-            Random.Range(-asteroidSpawnX, asteroidSpawnX),
-            alternateY ? asteroidSpawnY : -asteroidSpawnY
-         );
-         AsteroidManager.SpawnAsteroid(spawnPos);
-         alternateY = !alternateY;
+         AsteroidManager.SpawnAsteroid(AsteroidManager.GetSafeSpawnPosition());
          yield return new WaitForSeconds(asteroidSpawnDelay);
       }
    }
-
-   private Vector2 GetOffCameraSpawnPosition()
-   {
-      var mainCam = Camera.main;
-      var viewBounds = new Bounds();
-      return Vector2.zero;
-   }
-   
 }
