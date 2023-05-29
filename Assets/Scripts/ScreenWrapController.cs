@@ -1,18 +1,20 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ScreenWrapController : MonoBehaviour
 {
     [SerializeField] private bool requireVisible;
+    [SerializeField] private float wrapDelay;
+    
     private LineRenderer _lr;
     private bool _hasBeenVisible;
     private bool _canWrap = true;
+    private Camera _mainCam;
 
     private void Awake()
     {
         _hasBeenVisible = false;
+        _mainCam = Camera.main;
         _lr = GetComponentInChildren<LineRenderer>();
     }
 
@@ -23,7 +25,7 @@ public class ScreenWrapController : MonoBehaviour
         
         if (requireVisible && !_hasBeenVisible) return;
         
-        if (_canWrap && !transform.IsVisibleToCamera(Camera.main, _lr))
+        if (_canWrap && !transform.IsVisibleToCamera(_mainCam,_lr))
         {
             StartCoroutine(Wrap());
         }
@@ -33,7 +35,7 @@ public class ScreenWrapController : MonoBehaviour
     {
         _canWrap = false; 
         transform.UpdateScreenWrap(); 
-        yield return new WaitForSeconds(0.2f); 
+        yield return new WaitForSeconds(wrapDelay); 
         _canWrap = true;
     }
 }

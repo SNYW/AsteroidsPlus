@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requireVisible: 1
+  wrapDelay: 0.2
 --- !u!1 &6025892780440493966
 GameObject:
   m_ObjectHideFlags: 0
