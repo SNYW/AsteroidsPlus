@@ -25,11 +25,16 @@ public static class Utilities
    
    public static bool IsVisibleToCamera(this Transform t, Camera cam, Renderer r)
    {
-      var viewportPosition = cam.WorldToViewportPoint(t.position);
+      var topRight = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth, cam.pixelHeight));
+      var bottomLeft = cam.ScreenToWorldPoint(new Vector3(0, 0));
+
+      Bounds screenBounds = new Bounds();
+      screenBounds.Encapsulate(topRight);
+      screenBounds.Encapsulate(bottomLeft);
 
       if (r != null && r.isVisible)
          return true;
 
-      return r.isVisible || viewportPosition.x is <= 1 and >= 0 || viewportPosition.y is <= 1 or >= 0; 
+      return screenBounds.Contains(t.position);
    }
 }

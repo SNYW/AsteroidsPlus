@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -18,13 +19,12 @@ public class Asteroid : MonoBehaviour
    private LineRenderer _lr;
    private PolygonCollider2D _pc;
    private Rigidbody2D _rb;
-   private bool _hasBeenVisible;
-   private Camera _mainCam;
-   private float _radius;
+   public float radius; 
+   public int points => _lr.positionCount;
+   private bool _canWrap = true;
 
    private void Awake()
    {
-      _mainCam = Camera.main;
       _lr = GetComponentInChildren<LineRenderer>();
       _pc = GetComponent<PolygonCollider2D>();
       _rb = GetComponent<Rigidbody2D>();
@@ -37,29 +37,16 @@ public class Asteroid : MonoBehaviour
    
    private void Initialize()
    {
-      _hasBeenVisible = false;
       GenerateAsteroid();
       InitCollider();
       InitForces(Vector2.zero);
    }
 
-   private void Update()
-   {
-      if (_lr.isVisible)
-         _hasBeenVisible = true;
-
-      if (_hasBeenVisible)
-      {
-         transform.UpdateScreenWrap(_lr);
-      }
-   }
-
    private void GenerateAsteroid(bool useCurrentRadius = false)
    {
       _rb.velocity = Vector2.zero;
-      _rb.angularVelocity = 0;
       
-      if(!useCurrentRadius) _radius = minMaxRadius.RandomValue();
+      if(!useCurrentRadius) radius = minMaxRadius.RandomValue();
       var pointAmount = minMaxPoints.RandomValue();
 
       _lr.positionCount = (int)pointAmount;
@@ -71,8 +58,8 @@ public class Asteroid : MonoBehaviour
       {
 
          Vector2 pointPos = new Vector2(
-            Mathf.Cos(angle)*_radius + minMaxPosOffset.RandomValue(), 
-            Mathf.Sin(angle)*_radius + minMaxPosOffset.RandomValue()
+            Mathf.Cos(angle)*radius + minMaxPosOffset.RandomValue(), 
+            Mathf.Sin(angle)*radius + minMaxPosOffset.RandomValue()
          );
 
          var distanceOffset = ((Vector2)transform.position - pointPos).normalized * minMaxDistanceOffset.RandomValue();
@@ -82,7 +69,7 @@ public class Asteroid : MonoBehaviour
          angle += angleOffset;
       }
 
-      _rb.mass = _radius / 10;
+      _rb.mass = radius / 10;
    }
 
    private void InitCollider()
@@ -107,14 +94,14 @@ public class Asteroid : MonoBehaviour
 
    public void Hit()
    {
-      if (_radius > 20)
-         AsteroidManager.SpawnChildAsteroids((int)_radius/20, (Vector2)transform.position);
+      if (radius > minSplitRadius)
+         AsteroidManager.SpawnChildAsteroids((int)radius/20, (Vector2)transform.position);
       AsteroidManager.OnAsteroidDestroy(this);
    }
 
    public void InitAsChild(float radiusOverride)
    {
-      _radius = radiusOverride;
+      radius = radiusOverride;
       GenerateAsteroid(true);
       InitCollider();
       InitForces(transform.position);

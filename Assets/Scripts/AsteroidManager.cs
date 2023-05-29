@@ -36,6 +36,19 @@ public static class AsteroidManager
 
     public static void OnAsteroidDestroy(Asteroid asteroid)
     {
+        var hitParticles = ObjectPoolManager.GetPool(ObjectPool.ObjectPoolName.AsteroidHitParticles).GetPooledObject()
+            .GetComponent<ParticleSystem>();
+        
+
+        var burst = hitParticles.emission.GetBurst(0);
+        burst.minCount = (short)asteroid.points;
+        
+        var hitParticlesShape = hitParticles.shape;
+        hitParticlesShape.radius = asteroid.radius;
+
+        hitParticles.transform.position = asteroid.transform.position;
+        hitParticles.gameObject.SetActive(true);
+        hitParticles.Play();
         asteroid.gameObject.SetActive(false);
     }
     

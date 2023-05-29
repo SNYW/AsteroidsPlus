@@ -65,7 +65,8 @@ namespace GameData
         {
             Asteroids,
             Bullets,
-            Missiles
+            Missiles,
+            AsteroidHitParticles
         }
     }
 }

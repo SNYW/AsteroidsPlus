@@ -20,7 +20,6 @@ public class MovementController : MonoBehaviour
     void Update()
     {
         ManageMovement();
-        transform.UpdateScreenWrap();
     }
 
 
