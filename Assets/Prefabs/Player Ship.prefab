@@ -80,9 +80,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ed8288eade0b74fb5645de20c1c52c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxBounds: {x: 0, y: 0}
-  _speed: 17
-  _turnRate: 5
+  maxBounds: {x: 0, y: 0}
+  speed: 50
+  turnRate: 5
 --- !u!50 &2051100063
 Rigidbody2D:
   serializedVersion: 4
