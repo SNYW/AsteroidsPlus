@@ -1,6 +1,4 @@
-using System;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,16 +15,12 @@ public class Asteroid : MonoBehaviour
    private LineRenderer _lr;
    private PolygonCollider2D _pc;
    private Rigidbody2D _rb;
-   private Vector2 startPos;
 
    private void Awake()
    {
       _lr = GetComponentInChildren<LineRenderer>();
       _pc = GetComponent<PolygonCollider2D>();
       _rb = GetComponent<Rigidbody2D>();
-      startPos = transform.position;
-
-      Initialize();
    }
 
    private void Initialize()
@@ -36,17 +30,13 @@ public class Asteroid : MonoBehaviour
       InitForces();
    }
 
-   private void Update()
+   private void OnEnable()
    {
-      if (Input.GetKeyDown(KeyCode.G))
-      {
-         Initialize();
-      }
+      Initialize();
    }
 
    private void GenerateAsteroid()
    {
-      transform.position = startPos;
       _rb.velocity = Vector2.zero;
       _rb.angularVelocity = 0;
       
@@ -66,7 +56,7 @@ public class Asteroid : MonoBehaviour
             Mathf.Sin(angle)*radius + minMaxPosOffset.RandomValue()
          );
 
-         var distanceOffset = ((Vector2)startPos - pointPos).normalized * minMaxDistanceOffset.RandomValue();
+         var distanceOffset = ((Vector2)transform.position - pointPos).normalized * minMaxDistanceOffset.RandomValue();
 
          _lr.SetPosition(i, pointPos+distanceOffset);
          
@@ -94,5 +84,4 @@ public class Asteroid : MonoBehaviour
          Random.Range(minMaxInitTorque.max, minMaxInitTorque.max / 2));
       _rb.AddTorque(balancedRange.RandomValue()*_rb.mass, ForceMode2D.Impulse);
    }
-   
 }
