@@ -27,17 +27,20 @@ namespace GameData
 
         public void InitPool()
         {
-            if (_pool.Any())
+            if (_pool != null && _pool.Any())
             {
                 _pool.ForEach(Destroy);
                 _pool.Clear();
             }
-            
-            for (int i = 0; i < minAmount; i++)
+            else
             {
-                var newPooledObject = Instantiate(pooledObject, Vector2.zero, Quaternion.identity);
-                newPooledObject.SetActive(false);
-                _pool.Add(newPooledObject);     
+                _pool = new List<GameObject>();
+                for (int i = 0; i < minAmount; i++)
+                {
+                    var newPooledObject = Instantiate(pooledObject, Vector2.zero, Quaternion.identity);
+                    newPooledObject.SetActive(false);
+                    _pool.Add(newPooledObject);     
+                }
             }
         }
 

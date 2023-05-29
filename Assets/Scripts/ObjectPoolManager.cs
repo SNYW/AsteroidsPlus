@@ -15,7 +15,7 @@ public static class ObjectPoolManager
 
     public static void InitPools()
     {
-        var allPools = Resources.LoadAll("Game Data/Object Pools") as ObjectPool[];
+        var allPools = Resources.LoadAll("Data/Pools", typeof(ObjectPool)).Cast<ObjectPool>();
 
         _pools = new Dictionary<ObjectPool.ObjectPoolName, ObjectPool>();
         
