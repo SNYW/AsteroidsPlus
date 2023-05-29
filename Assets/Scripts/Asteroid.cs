@@ -20,8 +20,6 @@ public class Asteroid : MonoBehaviour
    private PolygonCollider2D _pc;
    private Rigidbody2D _rb;
    public float radius; 
-   public int points => _lr.positionCount;
-   private bool _canWrap = true;
 
    private void Awake()
    {
