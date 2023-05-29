@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -15,24 +16,39 @@ public class Asteroid : MonoBehaviour
    private LineRenderer _lr;
    private PolygonCollider2D _pc;
    private Rigidbody2D _rb;
+   private bool _hasBeenVisible;
+   private Camera _mainCam;
 
    private void Awake()
    {
+      _mainCam = Camera.main;
       _lr = GetComponentInChildren<LineRenderer>();
       _pc = GetComponent<PolygonCollider2D>();
       _rb = GetComponent<Rigidbody2D>();
    }
 
+   private void OnEnable()
+   {
+      Initialize();
+   }
+   
    private void Initialize()
    {
+      _hasBeenVisible = false;
       GenerateAsteroid();
       InitCollider();
       InitForces();
    }
 
-   private void OnEnable()
+   private void Update()
    {
-      Initialize();
+      if (_lr.isVisible)
+         _hasBeenVisible = true;
+
+      if (_hasBeenVisible)
+      {
+         transform.UpdateScreenWrap(_lr);
+      }
    }
 
    private void GenerateAsteroid()

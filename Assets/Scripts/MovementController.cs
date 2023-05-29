@@ -9,16 +9,20 @@ public class MovementController : MonoBehaviour
     [SerializeField] private float turnRate;
 
     private Rigidbody2D _rb;
+    private LineRenderer _lr;
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _lr = GetComponentInChildren<LineRenderer>();
     }
 
     void Update()
     {
         ManageMovement();
+        transform.UpdateScreenWrap();
     }
+
 
     private void ManageMovement()
     {
