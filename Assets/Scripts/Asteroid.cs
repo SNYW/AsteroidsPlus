@@ -76,7 +76,8 @@ public class Asteroid : MonoBehaviour
 
    private void InitForces()
    {
-      var dirToCentre = Vector2.zero - (Vector2)transform.position;
+      var randomOffset = new Vector2(Random.Range(-100, 100), Random.Range(-100, 100));
+      var dirToCentre = Vector2.zero+randomOffset - (Vector2)transform.position;
 
       _rb.AddForce(dirToCentre * (_rb.mass * minMaxInitSpeed.RandomValue()), ForceMode2D.Force);
       var balancedRange = new RangeFloat(

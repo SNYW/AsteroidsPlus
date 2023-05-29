@@ -11,8 +11,9 @@ public class GameManager : MonoBehaviour
    }
    
    [SerializeField] private float asteroidSpawnDelay;
+   [SerializeField] private float asteroidSpawnY;
+   [SerializeField] private float asteroidSpawnX;
    [SerializeField] private GameState gameState;
-   [SerializeField] private RangeFloat minAsteroidX;
    
    private void Awake()
    {
@@ -27,10 +28,15 @@ public class GameManager : MonoBehaviour
 
    private IEnumerator SpawnAsteroid()
    {
+      var alternateY = true;
       while(gameState == GameState.Playing)
-      { 
-         AsteroidManager.SpawnAsteroid(Vector3.zero);
-         
+      {
+         var spawnPos = new Vector2(
+            Random.Range(-asteroidSpawnX, asteroidSpawnX),
+            alternateY ? asteroidSpawnY : -asteroidSpawnY
+         );
+         AsteroidManager.SpawnAsteroid(spawnPos);
+         alternateY = !alternateY;
          yield return new WaitForSeconds(asteroidSpawnDelay);
       }
    }
