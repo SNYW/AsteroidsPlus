@@ -444,29 +444,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid
       objectReference: {fileID: 0}
-    - target: {fileID: 2566690440135661138, guid: a6c76fc4cb569664d9ddb92f363c204e, type: 3}
-      propertyPath: minMaxOffset.max
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2566690440135661138, guid: a6c76fc4cb569664d9ddb92f363c204e, type: 3}
-      propertyPath: minMaxPointOffset.max
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2566690440135661138, guid: a6c76fc4cb569664d9ddb92f363c204e, type: 3}
-      propertyPath: minMaxPointOffset.min
-      value: -10
-      objectReference: {fileID: 0}
     - target: {fileID: 2566690440135661139, guid: a6c76fc4cb569664d9ddb92f363c204e, type: 3}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2566690440135661139, guid: a6c76fc4cb569664d9ddb92f363c204e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 48.21
       objectReference: {fileID: 0}
     - target: {fileID: 2566690440135661139, guid: a6c76fc4cb569664d9ddb92f363c204e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 26.84
       objectReference: {fileID: 0}
     - target: {fileID: 2566690440135661139, guid: a6c76fc4cb569664d9ddb92f363c204e, type: 3}
       propertyPath: m_LocalPosition.z
