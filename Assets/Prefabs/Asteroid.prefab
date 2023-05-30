@@ -61,13 +61,13 @@ MonoBehaviour:
     min: -6
     max: 6
   minMaxInitSpeed:
-    min: 3
-    max: 5
+    min: 6
+    max: 10
   minMaxInitTorque:
     min: -50
     max: 50
-  minSplitRadius: 20
   radius: 0
+  minSplitRadius: 20
 --- !u!60 &2028242116
 PolygonCollider2D:
   m_ObjectHideFlags: 0

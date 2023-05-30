@@ -12,13 +12,15 @@ public class GameManager : MonoBehaviour
       Ended
    }
 
-   [SerializeField] private int maxAsteroids;
+   [SerializeField] private int maxLevel;
+   [SerializeField] private float pointsPerLevel;
+   [SerializeField] private int maxAsteroidsPerLevel;
    [SerializeField] private float asteroidSpawnDelay;
    [SerializeField] private float asteroidSpawnY;
    [SerializeField] private float asteroidSpawnX;
    [SerializeField] private GameState gameState;
 
-   private int _currentAsteroids;
+   public int _currentAsteroids;
    
    private void Awake()
    {
@@ -33,7 +35,7 @@ public class GameManager : MonoBehaviour
    {
       if (Input.GetKeyDown(KeyCode.G))
       {
-         ShipUpgradeManager.Upgrade(ShipUpgrade.UpgradeName.Gun);
+         ShipUpgradeManager.Upgrade(ShipUpgrade.UpgradeName.Shield);
       }
    }
 

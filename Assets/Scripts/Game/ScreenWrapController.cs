@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -11,8 +12,8 @@ public class ScreenWrapController : MonoBehaviour
     private bool _canWrap = true;
     private Camera _mainCam;
 
-    private void Awake()
-    {
+    private void OnEnable()
+    { 
         _hasBeenVisible = false;
         _mainCam = Camera.main;
         _lr = GetComponentInChildren<LineRenderer>();
