@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
    private void ManageLevel()
    {
       _currentExp++;
+      SystemEventManager.RaiseEvent(SystemEventManager.ActionType.ExpGained, expPerLevel*_currentLevel/_currentExp);
       if (_currentExp >= expPerLevel * _currentLevel)
       {
          GameLevelUp();

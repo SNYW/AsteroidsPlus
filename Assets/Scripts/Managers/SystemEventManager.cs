@@ -25,6 +25,7 @@ public static class SystemEventManager
       AsteroidSpawn,
       ShipUpgraded,
       ShotFired,
-      LevelUp
+      LevelUp,
+      ExpGained
    }
 }

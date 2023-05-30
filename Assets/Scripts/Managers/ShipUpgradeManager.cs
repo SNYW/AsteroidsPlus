@@ -44,6 +44,7 @@ public static class ShipUpgradeManager
       if (upgrade.isMaxed) return;
       
       upgrade.LevelUp();
+      _upgradePoints--;
       SystemEventManager.RaiseEvent(SystemEventManager.ActionType.ShipUpgraded, upgrade);
    }
 
