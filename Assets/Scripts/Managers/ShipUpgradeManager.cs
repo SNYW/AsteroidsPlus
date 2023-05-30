@@ -22,6 +22,8 @@ public static class ShipUpgradeManager
    public static void Upgrade(ShipUpgrade.UpgradeName upgradeName)
    {
       if (!_upgrades.TryGetValue(upgradeName, out var upgrade)) return;
+
+      if (upgrade.isMaxed) return;
       
       upgrade.LevelUp();
       SystemEventManager.RaiseEvent(SystemEventManager.ActionType.ShipUpgraded, upgrade);

@@ -10,15 +10,18 @@ public class ShipUpgrade : ScriptableObject
    [SerializeField] private List<GameObject> upgradePrefabs;
   
    private int _currentLevel;
+   public bool isMaxed;
 
    public void Init()
    {
+      isMaxed = false;
       _currentLevel = startLevel;
    }
 
    public void LevelUp()
    {
       _currentLevel++;
+      isMaxed = _currentLevel == upgradePrefabs.Count - 1;
    }
 
    public GameObject GetPrefabForCurrentLevel()
@@ -28,6 +31,7 @@ public class ShipUpgrade : ScriptableObject
    
    public enum UpgradeName
    {
-      Gun
+      Gun,
+      Shield
    }
 }
