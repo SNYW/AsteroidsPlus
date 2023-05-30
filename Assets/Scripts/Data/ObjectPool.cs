@@ -61,6 +61,11 @@ namespace GameData
             return _pool.Count(o => o.activeInHierarchy);
         }
 
+        public List<GameObject> GetAllActive()
+        {
+            return _pool.Where(o => o.activeInHierarchy).ToList();
+        }
+
         public enum ObjectPoolName
         {
             Asteroids,

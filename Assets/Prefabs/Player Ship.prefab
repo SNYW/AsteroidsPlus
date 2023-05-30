@@ -160,6 +160,7 @@ Transform:
   - {fileID: 326872862904170196}
   - {fileID: 8095108788945454157}
   - {fileID: 5351663280818704824}
+  - {fileID: 8214600751804664112}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -190,7 +191,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbaa2de6298cbe84db298f4622596656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseShotCooldown: 0
+  baseShotCooldown: 0.2
+  baseMissileCooldown: 3
 --- !u!114 &2555288035626399155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,6 +408,51 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!1 &4231733524923198274
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8214600751804664112}
+  - component: {fileID: 3004310466788288136}
+  m_Layer: 0
+  m_Name: Missile Anchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8214600751804664112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4231733524923198274}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3004310467153111834}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3004310466788288136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4231733524923198274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64da51bb43a7ca54e916dc11cbde5c06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgrade: {fileID: 11400000, guid: 4481b555f6c782a4fada531379f973fd, type: 2}
 --- !u!1 &5590460891956780009
 GameObject:
   m_ObjectHideFlags: 0

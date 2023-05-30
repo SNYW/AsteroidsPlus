@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2bac46260389594699d1e5ea1c41ab2, type: 3}
+  m_Name: Missile
+  m_EditorClassIdentifier: 
+  upgradeName: 2
+  startLevel: 0
+  upgradePrefabs:
+  - {fileID: 2752459913299902868, guid: dc24bf6afc3679442be4cf16eb85ea42, type: 3}
+  isMaxed: 0

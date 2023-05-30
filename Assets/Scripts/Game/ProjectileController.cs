@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
     [SerializeField] private float baseShotCooldown;
+    [SerializeField] private float baseMissileCooldown;
 
     private bool _canShoot;
 
@@ -18,11 +20,25 @@ public class ProjectileController : MonoBehaviour
         _canShoot = true;
     }
 
+    private void OnEnable()
+    {
+        StartCoroutine(FireMissiles());
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && _canShoot)
         {
             StartCoroutine(Shoot());
+        }
+    }
+
+    private IEnumerator FireMissiles()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(baseMissileCooldown);
+            SystemEventManager.RaiseEvent(SystemEventManager.ActionType.ShotFired, ShotType.Missile);
         }
     }
 

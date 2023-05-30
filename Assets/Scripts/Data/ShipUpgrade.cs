@@ -32,6 +32,7 @@ public class ShipUpgrade : ScriptableObject
    public enum UpgradeName
    {
       Gun,
-      Shield
+      Shield,
+      Missile
    }
 }
