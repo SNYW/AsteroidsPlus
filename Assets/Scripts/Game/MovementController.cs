@@ -11,6 +11,15 @@ public class MovementController : MonoBehaviour
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        SystemEventManager.Subscribe(OnGameAction);
+    }
+    
+    private void OnGameAction(SystemEventManager.ActionType type, object payload)
+    {
+        if (type is SystemEventManager.ActionType.GameReset)
+        {
+            _rb.velocity = Vector2.zero;
+        }
     }
 
     void Update()
