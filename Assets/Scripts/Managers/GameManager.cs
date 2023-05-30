@@ -110,6 +110,8 @@ public class GameManager : MonoBehaviour
       _currentAsteroids = 0;
       _currentLevel = 1;
       _currentExp = 0;
+      score = 0;
+      
       ShipUpgradeManager.Init();
       ObjectPoolManager.InitPools();
       AsteroidManager.Init(asteroidSpawnX, asteroidSpawnY);
