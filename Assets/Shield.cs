@@ -15,6 +15,7 @@ public class Shield : MonoBehaviour
     private void Awake()
     {
         _collider = GetComponent<Collider2D>();
+        _collider.density = 0;
     }
 
     private void OnCollisionEnter2D(Collision2D col)

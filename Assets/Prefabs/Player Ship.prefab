@@ -175,8 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ed8288eade0b74fb5645de20c1c52c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
-  turnRate: 5
+  speed: 20
+  turnRate: 3
   _animation: {fileID: 7489328034055118077}
 --- !u!114 &7167242842803076102
 MonoBehaviour:
@@ -216,7 +216,7 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
+  m_UseAutoMass: 1
   m_Mass: 1
   m_LinearDrag: 0.8
   m_AngularDrag: 3

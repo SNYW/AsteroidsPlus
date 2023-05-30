@@ -29,12 +29,12 @@ public class MovementController : MonoBehaviour
 
         if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)))
         {
-            _rb.AddTorque(-turnRate, ForceMode2D.Impulse);
+            _rb.AddTorque(-turnRate, ForceMode2D.Force);
         }
         
         if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)))
         {
-            _rb.AddTorque(turnRate, ForceMode2D.Impulse);
+            _rb.AddTorque(turnRate, ForceMode2D.Force);
         }
     }
 }
