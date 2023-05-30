@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using Random = UnityEngine.Random;
 
 public class Asteroid : MonoBehaviour

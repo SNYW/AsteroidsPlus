@@ -21,8 +21,7 @@ public static class AsteroidManager
         SpawnAsteroid(GetSafeSpawnPosition());
     }
 
-    
-    public static void SpawnAsteroid(Vector3 position, bool overrideRadius = false, float radius = 0)
+    private static void SpawnAsteroid(Vector3 position, bool overrideRadius = false, float radius = 0)
     {
         var asteroid = _asteroidPool.GetPooledObject().GetComponent<Asteroid>();
         asteroid.transform.position = position;
@@ -31,7 +30,7 @@ public static class AsteroidManager
         SystemEventManager.RaiseEvent(SystemEventManager.ActionType.AsteroidSpawn, asteroid);
     }
 
-    public static void SpawnChildAsteroids(int amount, Vector2 position)
+    private static void SpawnChildAsteroids(int amount, Vector2 position)
     {
         if(amount <= 1) return;
         for (int i = 0; i < amount; i++)

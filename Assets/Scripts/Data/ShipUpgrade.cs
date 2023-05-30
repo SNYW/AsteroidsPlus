@@ -6,14 +6,19 @@ using UnityEngine;
 public class ShipUpgrade : ScriptableObject
 {
    public string upgradeName; 
-   [SerializeField] private int startLevel;
+   [SerializeField] private int startLevel = 0;
    [SerializeField] private string anchorName;
    [SerializeField] private List<GameObject> upgradePrefabs;
   
-   private int currentLevel;
+   private int _currentLevel;
 
    public void LevelUp()
    {
-      
+      _currentLevel++;
+   }
+
+   public GameObject GetPrefabForCurrentLevel()
+   {
+      return upgradePrefabs[_currentLevel];
    }
 }
