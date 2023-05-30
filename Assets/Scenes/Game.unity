@@ -610,12 +610,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 858fd666a623d9445b45459a00451ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLevel: 10
-  expPerLevel: 1
-  maxAsteroidsPerLevel: 3
-  asteroidSpawnDelay: 2
-  asteroidSpawnY: 350
-  asteroidSpawnX: 500
+  maxLevel: 20
+  expPerLevel: 10
+  maxAsteroidsPerLevel: 5
+  asteroidSpawnDelay: 0.1
+  asteroidSpawnY: 500
+  asteroidSpawnX: 600
   gameState: 2
   _currentLevel: 0
 --- !u!1 &1240809843
@@ -1335,6 +1335,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2862545736125308874, guid: 0e445e2d091ea2242b5df97ad55b234c, type: 3}
+      propertyPath: speed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2862545736125308874, guid: 0e445e2d091ea2242b5df97ad55b234c, type: 3}
+      propertyPath: turnRate
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3004310467153111834, guid: 0e445e2d091ea2242b5df97ad55b234c, type: 3}
       propertyPath: m_RootOrder
       value: 1

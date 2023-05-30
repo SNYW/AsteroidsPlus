@@ -26,6 +26,7 @@ public static class SystemEventManager
       ShipUpgraded,
       ShotFired,
       LevelUp,
-      ExpGained
+      ExpGained,
+      GameReset
    }
 }

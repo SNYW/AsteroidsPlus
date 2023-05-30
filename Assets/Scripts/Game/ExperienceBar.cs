@@ -23,6 +23,10 @@ public class ExperienceBar : MonoBehaviour
             case SystemEventManager.ActionType.LevelUp when payload is int level:
                 levelText.text = $"Lvl {level}";
                 break;
+            case SystemEventManager.ActionType.GameReset:
+                levelText.text = $"Lvl 1";
+                UpdateBarPercentage(0);
+                break;
         }
     }
 

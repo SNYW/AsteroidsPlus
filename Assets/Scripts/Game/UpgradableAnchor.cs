@@ -28,20 +28,35 @@ public class UpgradableAnchor : MonoBehaviour
 
     private void OnGameAction(SystemEventManager.ActionType type, object payload)
     {
-        if (type is SystemEventManager.ActionType.ShipUpgraded && 
-            payload is ShipUpgrade targetUpgrade && 
-            targetUpgrade == upgrade)
+        switch (type)
         {
-            UpgradeShip(upgrade);
+            case SystemEventManager.ActionType.ShipUpgraded when payload is ShipUpgrade targetUpgrade && targetUpgrade == upgrade:
+                UpgradeShip();
+                break;
+            case SystemEventManager.ActionType.GameReset:
+                ResetUpgrade();
+                break;
         }
     }
 
-    private void UpgradeShip(ShipUpgrade targetUpgrade)
+    private void UpgradeShip()
     {
         Destroy(_upgradeGameObject);
 
         _upgradeGameObject = Instantiate(
-            targetUpgrade.GetPrefabForCurrentLevel(), 
+            upgrade.GetPrefabForCurrentLevel(), 
+            transform.position, 
+            transform.rotation, 
+            transform
+        );
+    }
+
+    private void ResetUpgrade()
+    {
+        Destroy(_upgradeGameObject);
+
+        _upgradeGameObject = Instantiate(
+            upgrade.GetPrefabForLevel(0), 
             transform.position, 
             transform.rotation, 
             transform

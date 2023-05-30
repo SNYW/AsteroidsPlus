@@ -20,6 +20,9 @@ public class UIManager : MonoBehaviour
             case SystemEventManager.ActionType.ShipUpgraded:
                 UpgradePanel.SetActive(ShipUpgradeManager.CanUpgradeAny());
                 break;
+            case SystemEventManager.ActionType.GameReset:
+                UpgradePanel.SetActive(false);
+                break;
         }
     }
 }

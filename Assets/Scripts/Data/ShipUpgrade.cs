@@ -29,6 +29,11 @@ public class ShipUpgrade : ScriptableObject
       return upgradePrefabs[_currentLevel];
    }
    
+   public GameObject GetPrefabForLevel(int level)
+   {
+      return upgradePrefabs[level];
+   }
+   
    public enum UpgradeName
    {
       Gun,

@@ -47,6 +47,9 @@ public class GameManager : MonoBehaviour
          case SystemEventManager.ActionType.AsteroidSpawn when payload is Asteroid:
             _currentAsteroids++;
             break;
+         case SystemEventManager.ActionType.GameReset:
+            OnPlayerDeath();
+            break;
       }
    }
 
@@ -86,4 +89,20 @@ public class GameManager : MonoBehaviour
          yield return new WaitForSeconds(asteroidSpawnDelay);
       }
    }
+
+   public void OnPlayerDeath()
+   {
+      ResetGame();
+   }
+
+   private void ResetGame()
+   {
+      _currentAsteroids = 0;
+      _currentLevel = 1;
+      _currentExp = 0;
+      ShipUpgradeManager.Init();
+      ObjectPoolManager.InitPools();
+      AsteroidManager.Init(asteroidSpawnX, asteroidSpawnY);
+   }
+   
 }

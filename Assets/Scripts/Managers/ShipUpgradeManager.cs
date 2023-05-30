@@ -20,6 +20,7 @@ public static class ShipUpgradeManager
       }
 
       _upgradePoints = 0;
+      SystemEventManager.Unsubscribe(OnGameAction);
       SystemEventManager.Subscribe(OnGameAction);
    }
 
