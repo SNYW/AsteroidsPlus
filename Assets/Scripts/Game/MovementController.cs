@@ -32,18 +32,18 @@ public class MovementController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            _rb.AddForce(transform.up * speed, ForceMode2D.Force);
+            _rb.AddForce(transform.up * 100 * speed * Time.deltaTime, ForceMode2D.Force);
             _animation.Play();
         }
 
         if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)))
         {
-            _rb.AddTorque(-turnRate, ForceMode2D.Force);
+            _rb.AddTorque(-turnRate * 100 * Time.deltaTime, ForceMode2D.Force);
         }
         
         if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)))
         {
-            _rb.AddTorque(turnRate, ForceMode2D.Force);
+            _rb.AddTorque(turnRate * 100 * Time.deltaTime, ForceMode2D.Force);
         }
     }
 }
