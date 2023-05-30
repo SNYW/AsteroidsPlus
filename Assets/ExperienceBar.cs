@@ -1,11 +1,14 @@
+using TMPro;
 using UnityEngine;
 
 public class ExperienceBar : MonoBehaviour
 {
     [SerializeField] private RectTransform childImage;
+    [SerializeField] private TMP_Text levelText;
 
     private void Awake()
     {
+        levelText.text = $"Lvl 1";
         UpdateBarPercentage(0);
         SystemEventManager.Subscribe(OnGameAction);
     }
@@ -17,8 +20,8 @@ public class ExperienceBar : MonoBehaviour
             case SystemEventManager.ActionType.ExpGained when payload is float exp:
                 UpdateBarPercentage(exp);
                 break;
-            case SystemEventManager.ActionType.LevelUp:
-                UpdateBarPercentage(0);
+            case SystemEventManager.ActionType.LevelUp when payload is int level:
+                levelText.text = $"Lvl {level}";
                 break;
         }
     }

@@ -48,8 +48,13 @@ public static class ShipUpgradeManager
       SystemEventManager.RaiseEvent(SystemEventManager.ActionType.ShipUpgraded, upgrade);
    }
 
-   public static bool CanUpgrade()
+   public static bool CanUpgradeAny()
    {
-      return _upgradePoints > 0;
+      return _upgradePoints > 0 && _upgrades.Any(u => !u.Value.isMaxed);
+   }
+   
+   public static bool CanUpgrade(ShipUpgrade.UpgradeName upgradeName)
+   {
+      return _upgradePoints > 0 && !_upgrades[upgradeName].isMaxed;
    }
 }

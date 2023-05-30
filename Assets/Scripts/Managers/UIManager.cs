@@ -8,20 +8,11 @@ public class UIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        SystemEventManager.Subscribe(OnGameAction);
         UpgradePanel.SetActive(false);
     }
 
-    private void OnGameAction(SystemEventManager.ActionType type, object payload)
+    private void Update()
     {
-        switch (type)
-        {
-            case SystemEventManager.ActionType.LevelUp:
-                UpgradePanel.SetActive(true);
-                break;
-            case SystemEventManager.ActionType.ShipUpgraded:
-                UpgradePanel.SetActive(ShipUpgradeManager.CanUpgrade());
-                break;
-        }
+        UpgradePanel.SetActive(ShipUpgradeManager.CanUpgradeAny());
     }
 }
