@@ -13,6 +13,12 @@ public static class AsteroidManager
     {
         _asteroidSpawnX = spawnX;
         _asteroidSpawnY = spawnY;
+        SystemEventManager.Subscribe(OnGameEvent);
+    }
+
+    public static void SpawnNewAsteroid()
+    {
+        SpawnAsteroid(GetSafeSpawnPosition());
     }
 
     
@@ -34,8 +40,19 @@ public static class AsteroidManager
         }
     }
 
-    public static void OnAsteroidDestroy(Asteroid asteroid)
+    private static void OnGameEvent(SystemEventManager.ActionType type, object payload)
     {
+        if (type is SystemEventManager.ActionType.AsteroidDeath && payload is Asteroid ast)
+        {
+            OnAsteroidDestroy(ast);
+        }
+    }
+
+    private static void OnAsteroidDestroy(Asteroid asteroid)
+    {
+        if(asteroid.radius > asteroid.minSplitRadius)
+            SpawnChildAsteroids((int)asteroid.radius/20, (Vector2)asteroid.transform.position);
+        
         var hitParticles = ObjectPoolManager.GetPool(ObjectPool.ObjectPoolName.AsteroidHitParticles).GetPooledObject()
             .GetComponent<ParticleSystem>();
         
@@ -44,8 +61,8 @@ public static class AsteroidManager
         hitParticles.Play();
         asteroid.gameObject.SetActive(false);
     }
-    
-    public static Vector2 GetSafeSpawnPosition()
+
+    private static Vector2 GetSafeSpawnPosition()
     {
         _alternateY = !_alternateY;
         

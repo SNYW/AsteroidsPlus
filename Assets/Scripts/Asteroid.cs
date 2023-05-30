@@ -14,12 +14,12 @@ public class Asteroid : MonoBehaviour
    [SerializeField] private RangeFloat minMaxDistanceOffset;
    [SerializeField] private RangeFloat minMaxInitSpeed;
    [SerializeField] private RangeFloat minMaxInitTorque;
-   [SerializeField] private float minSplitRadius;
-   
+
    private LineRenderer _lr;
    private PolygonCollider2D _pc;
    private Rigidbody2D _rb;
    public float radius; 
+   public float minSplitRadius;
 
    private void Awake()
    {
@@ -92,9 +92,7 @@ public class Asteroid : MonoBehaviour
 
    public void Hit()
    {
-      if (radius > minSplitRadius)
-         AsteroidManager.SpawnChildAsteroids((int)radius/20, (Vector2)transform.position);
-      AsteroidManager.OnAsteroidDestroy(this);
+      
    }
 
    public void InitAsChild(float radiusOverride)

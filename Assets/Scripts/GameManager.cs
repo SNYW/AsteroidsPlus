@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
       while(gameState == GameState.Playing)
       {
          if(_asteroidPool.GetActiveAmount() < maxAsteroids)
-            AsteroidManager.SpawnAsteroid(AsteroidManager.GetSafeSpawnPosition());
+            AsteroidManager.SpawnNewAsteroid();
          
          yield return new WaitForSeconds(asteroidSpawnDelay);
       }

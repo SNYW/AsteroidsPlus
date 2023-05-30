@@ -12,4 +12,8 @@ public class ShipUpgrade : ScriptableObject
   
    private int currentLevel;
 
+   public void LevelUp()
+   {
+      
+   }
 }
