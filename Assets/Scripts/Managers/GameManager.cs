@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
-using GameData;
-using UnityEditor;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -20,12 +18,15 @@ public class GameManager : MonoBehaviour
    [SerializeField] private float asteroidSpawnY;
    [SerializeField] private float asteroidSpawnX;
    [SerializeField] private GameState gameState;
+   [SerializeField] private TMP_Text scoreText;
+   [SerializeField] private TMP_Text highScoreText;
 
    private int _currentAsteroids;
-   [SerializeField] private int _currentLevel;
+   private int _currentLevel;
    private int _currentExp;
    private bool _isMaxLevel;
-   
+   private int score;
+
    private void Awake()
    {
       _currentAsteroids = 0;
@@ -55,12 +56,15 @@ public class GameManager : MonoBehaviour
 
    private void ManageLevel()
    {
+      score++;
       _currentExp++;
       SystemEventManager.RaiseEvent(SystemEventManager.ActionType.ExpGained, _currentExp/(expPerLevel*_currentLevel));
       if (_currentExp >= expPerLevel * _currentLevel)
       {
          GameLevelUp();
       }
+
+      scoreText.text = $"Score: {score}";
    }
 
    private void GameLevelUp()
@@ -97,6 +101,12 @@ public class GameManager : MonoBehaviour
 
    private void ResetGame()
    {
+      if (PlayerPrefs.GetInt("HighScore") < score)
+      {
+         PlayerPrefs.SetInt("HighScore", score);
+      }
+      highScoreText.text = $"High Score: {PlayerPrefs.GetInt("HighScore")}";
+      
       _currentAsteroids = 0;
       _currentLevel = 1;
       _currentExp = 0;
