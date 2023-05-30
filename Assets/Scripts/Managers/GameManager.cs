@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using GameData;
+using UnityEditor;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -13,18 +14,22 @@ public class GameManager : MonoBehaviour
    }
 
    [SerializeField] private int maxLevel;
-   [SerializeField] private float pointsPerLevel;
+   [SerializeField] private float expPerLevel;
    [SerializeField] private int maxAsteroidsPerLevel;
    [SerializeField] private float asteroidSpawnDelay;
    [SerializeField] private float asteroidSpawnY;
    [SerializeField] private float asteroidSpawnX;
    [SerializeField] private GameState gameState;
 
-   public int _currentAsteroids;
+   private int _currentAsteroids;
+   [SerializeField] private int _currentLevel;
+   private int _currentExp;
+   private bool _isMaxLevel;
    
    private void Awake()
    {
       _currentAsteroids = 0;
+      _currentLevel = 1;
       ShipUpgradeManager.Init();
       ObjectPoolManager.InitPools();
       AsteroidManager.Init(asteroidSpawnX, asteroidSpawnY);
@@ -45,11 +50,29 @@ public class GameManager : MonoBehaviour
       {
          case SystemEventManager.ActionType.AsteroidDeath when payload is Asteroid:
             _currentAsteroids--;
+            ManageLevel();
             break;
          case SystemEventManager.ActionType.AsteroidSpawn when payload is Asteroid:
             _currentAsteroids++;
             break;
       }
+   }
+
+   private void ManageLevel()
+   {
+      _currentExp++;
+      if (_currentExp >= expPerLevel * _currentLevel)
+      {
+         GameLevelUp();
+      }
+   }
+
+   private void GameLevelUp()
+   {
+      _currentExp = 0;
+      _currentLevel = Mathf.Clamp(_currentLevel+1, 0, maxLevel);
+      _isMaxLevel = _currentLevel == maxLevel;
+      SystemEventManager.RaiseEvent(SystemEventManager.ActionType.LevelUp, null);
    }
 
    private void Start()
@@ -62,7 +85,7 @@ public class GameManager : MonoBehaviour
    {
       while(gameState == GameState.Playing)
       {
-         if(_currentAsteroids < maxAsteroids)
+         if(_currentAsteroids < maxAsteroidsPerLevel*_currentLevel)
          {
             AsteroidManager.SpawnNewAsteroid();
          }

@@ -4,22 +4,24 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
 
-    [SerializeField] private GameObject UpgradeWindow;
-    [SerializeField] private GameObject UpgradeNotification;
-    
-    private void Start()
+    [SerializeField] private GameObject UpgradePanel;
+
+    private void OnEnable()
     {
-        UpgradeWindow.SetActive(false);
-        UpgradeNotification.SetActive(true);
+        SystemEventManager.Subscribe(OnGameAction);
+        UpgradePanel.SetActive(false);
     }
 
-    void Update()
+    private void OnGameAction(SystemEventManager.ActionType type, object payload)
     {
-        var shiftHeld = Input.GetKey(KeyCode.LeftShift);
-
-        Time.timeScale = shiftHeld ? 0 : 1;
-        
-        UpgradeWindow.SetActive(shiftHeld);
-        UpgradeNotification.SetActive(!shiftHeld);
+        switch (type)
+        {
+            case SystemEventManager.ActionType.LevelUp:
+                UpgradePanel.SetActive(true);
+                break;
+            case SystemEventManager.ActionType.ShipUpgraded:
+                UpgradePanel.SetActive(ShipUpgradeManager.CanUpgrade());
+                break;
+        }
     }
 }
