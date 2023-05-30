@@ -8,24 +8,32 @@ public class Missile : Projectile
     
     protected new void OnEnable()
     { 
-        base.OnEnable(); 
+        base.OnEnable();
+        _targetAsteroid = null;
         GetTarget();
     }
 
     private void Update()
     {
-        if (_targetAsteroid == null || !_targetAsteroid.isActiveAndEnabled)
+        if (_targetAsteroid == null ||!_targetAsteroid.gameObject.activeSelf)
         {
             GetTarget();
         }
-        
-        transform.LookAt(_targetAsteroid.transform);
-        _rb.AddForce((transform.position - _targetAsteroid.transform.position).normalized*speed, ForceMode2D.Force);
+        Vector3 vectorToTarget = _targetAsteroid.transform.position - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: vectorToTarget);
+
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 100 * Time.deltaTime);
+
+        _rb.AddForce((_targetAsteroid.transform.position-transform.position).normalized*speed, ForceMode2D.Force);
     }
 
     private void GetTarget()
     {
-        if (ObjectPoolManager.GetPool(ObjectPool.ObjectPoolName.Asteroids).GetActiveAmount() <= 0) gameObject.SetActive(false);
+        if (ObjectPoolManager.GetPool(ObjectPool.ObjectPoolName.Asteroids).GetActiveAmount() <= 0)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
         
         var allAsteroids =  ObjectPoolManager
             .GetPool(ObjectPool.ObjectPoolName.Asteroids)

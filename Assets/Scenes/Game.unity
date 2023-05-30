@@ -770,6 +770,10 @@ PrefabInstance:
       propertyPath: m_Softness.y
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 4344067950702803581, guid: de273a19e6743f344963cd2a01cd8e3f, type: 3}
+      propertyPath: upgradeName
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4702729800918088908, guid: de273a19e6743f344963cd2a01cd8e3f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

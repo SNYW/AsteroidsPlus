@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -29,10 +28,7 @@ public static class ShipUpgradeManager
       switch (type)
       {
          case SystemEventManager.ActionType.LevelUp:
-            _upgradePoints++;
-            break;
-         case SystemEventManager.ActionType.ShipUpgraded:
-            _upgradePoints--;
+            if(!CanUpgradeAny()) _upgradePoints++;
             break;
       }
    }

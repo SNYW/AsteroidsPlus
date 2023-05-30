@@ -36,14 +36,6 @@ public class GameManager : MonoBehaviour
       SystemEventManager.Subscribe(OnGameAction);
    }
 
-   private void Update()
-   {
-      if (Input.GetKeyDown(KeyCode.G))
-      {
-         ShipUpgradeManager.Upgrade(ShipUpgrade.UpgradeName.Shield);
-      }
-   }
-
    private void OnGameAction(SystemEventManager.ActionType type, object payload)
    {
       switch (type)
