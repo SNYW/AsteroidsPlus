@@ -144,8 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbaa2de6298cbe84db298f4622596656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletAnchor: {fileID: 0}
-  missileAnchors: []
   baseShotCooldown: 0
 --- !u!114 &2555288035626399155
 MonoBehaviour:

@@ -6,9 +6,14 @@ public class UpgradableAnchor : MonoBehaviour
 
     private GameObject _upgradeGameObject;
 
-    private void Awake()
+    private void Start()
     {
-       _upgradeGameObject = transform.GetChild(0).gameObject;
+        _upgradeGameObject = Instantiate(
+            upgrade.GetPrefabForCurrentLevel(), 
+            transform.position, 
+            transform.rotation, 
+            transform
+        );
     }
 
     private void OnEnable()
@@ -38,7 +43,7 @@ public class UpgradableAnchor : MonoBehaviour
         _upgradeGameObject = Instantiate(
             targetUpgrade.GetPrefabForCurrentLevel(), 
             transform.position, 
-            Quaternion.identity, 
+            transform.rotation, 
             transform
         );
     }

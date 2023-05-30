@@ -5,12 +5,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "new Upgrade", menuName = "Game Data/Ship Upgrade")]
 public class ShipUpgrade : ScriptableObject
 {
-   public string upgradeName; 
+   public UpgradeName upgradeName; 
    [SerializeField] private int startLevel = 0;
-   [SerializeField] private string anchorName;
    [SerializeField] private List<GameObject> upgradePrefabs;
   
    private int _currentLevel;
+
+   public void Init()
+   {
+      _currentLevel = startLevel;
+   }
 
    public void LevelUp()
    {
@@ -20,5 +24,10 @@ public class ShipUpgrade : ScriptableObject
    public GameObject GetPrefabForCurrentLevel()
    {
       return upgradePrefabs[_currentLevel];
+   }
+   
+   public enum UpgradeName
+   {
+      Gun
    }
 }

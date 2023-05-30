@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using GameData;
 using UnityEngine;
@@ -22,9 +23,18 @@ public class GameManager : MonoBehaviour
    private void Awake()
    {
       _currentAsteroids = 0;
+      ShipUpgradeManager.Init();
       ObjectPoolManager.InitPools();
       AsteroidManager.Init(asteroidSpawnX, asteroidSpawnY);
       SystemEventManager.Subscribe(OnGameAction);
+   }
+
+   private void Update()
+   {
+      if (Input.GetKeyDown(KeyCode.G))
+      {
+         ShipUpgradeManager.Upgrade(ShipUpgrade.UpgradeName.Gun);
+      }
    }
 
    private void OnGameAction(SystemEventManager.ActionType type, object payload)

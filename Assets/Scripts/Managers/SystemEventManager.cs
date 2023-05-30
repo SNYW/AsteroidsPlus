@@ -23,6 +23,7 @@ public static class SystemEventManager
    {
       AsteroidDeath,
       AsteroidSpawn,
-      ShipUpgraded
+      ShipUpgraded,
+      ShotFired
    }
 }

@@ -1,18 +1,29 @@
-using System.Collections;
+
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class ShipUpgradeManager : MonoBehaviour
+public static class ShipUpgradeManager
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   private static Dictionary<ShipUpgrade.UpgradeName, ShipUpgrade> _upgrades;
+   public static void Init()
+   { 
+      var allupgrades = Resources.LoadAll("Data/Upgrades", typeof(ShipUpgrade)).Cast<ShipUpgrade>();
 
-    // Update is called once per frame
-    void Update()
-    {
+      _upgrades = new Dictionary<ShipUpgrade.UpgradeName, ShipUpgrade>();
         
-    }
+      foreach (var upgrade in allupgrades)
+      {
+         upgrade.Init();
+         _upgrades.Add(upgrade.upgradeName, upgrade);
+      }
+   }
+
+   public static void Upgrade(ShipUpgrade.UpgradeName upgradeName)
+   {
+      if (!_upgrades.TryGetValue(upgradeName, out var upgrade)) return;
+      
+      upgrade.LevelUp();
+      SystemEventManager.RaiseEvent(SystemEventManager.ActionType.ShipUpgraded, upgrade);
+   }
 }
