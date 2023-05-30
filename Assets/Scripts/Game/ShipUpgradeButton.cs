@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 public class ShipUpgradeButton : MonoBehaviour
 {
-   [SerializeField] public ShipUpgrade.UpgradeName upgradeName;
+   [SerializeField] private ShipUpgrade.UpgradeName upgradeName;
+   [SerializeField] private KeyCode hotkey;
 
    private Button _button;
 
@@ -16,6 +17,10 @@ public class ShipUpgradeButton : MonoBehaviour
    private void Update()
    {
       _button.interactable = ShipUpgradeManager.CanUpgrade(upgradeName);
+      if (Input.GetKeyDown(hotkey) && _button.interactable)
+      {
+         OnClicked();
+      }
    }
 
    public void OnClicked()
