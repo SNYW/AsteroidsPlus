@@ -1616,6 +1616,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2051100063, guid: 0e445e2d091ea2242b5df97ad55b234c, type: 3}
+      propertyPath: m_AngularDrag
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2862545736125308874, guid: 0e445e2d091ea2242b5df97ad55b234c, type: 3}
+      propertyPath: speed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2862545736125308874, guid: 0e445e2d091ea2242b5df97ad55b234c, type: 3}
+      propertyPath: turnRate
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3004310467153111834, guid: 0e445e2d091ea2242b5df97ad55b234c, type: 3}
       propertyPath: m_RootOrder
       value: 1
