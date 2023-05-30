@@ -17,12 +17,27 @@ public class GameManager : MonoBehaviour
    [SerializeField] private float asteroidSpawnX;
    [SerializeField] private GameState gameState;
 
-   private ObjectPool _asteroidPool;
+   private int _currentAsteroids;
+   
    private void Awake()
    {
+      _currentAsteroids = 0;
       ObjectPoolManager.InitPools();
-      _asteroidPool = ObjectPoolManager.GetPool(ObjectPool.ObjectPoolName.Asteroids);
       AsteroidManager.Init(asteroidSpawnX, asteroidSpawnY);
+      SystemEventManager.Subscribe(OnGameAction);
+   }
+
+   private void OnGameAction(SystemEventManager.ActionType type, object payload)
+   {
+      switch (type)
+      {
+         case SystemEventManager.ActionType.AsteroidDeath when payload is Asteroid:
+            _currentAsteroids--;
+            break;
+         case SystemEventManager.ActionType.AsteroidSpawn when payload is Asteroid:
+            _currentAsteroids++;
+            break;
+      }
    }
 
    private void Start()
@@ -35,9 +50,11 @@ public class GameManager : MonoBehaviour
    {
       while(gameState == GameState.Playing)
       {
-         if(_asteroidPool.GetActiveAmount() < maxAsteroids)
+         if(_currentAsteroids < maxAsteroids)
+         {
             AsteroidManager.SpawnNewAsteroid();
-         
+         }
+
          yield return new WaitForSeconds(asteroidSpawnDelay);
       }
    }

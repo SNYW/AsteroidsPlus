@@ -92,7 +92,7 @@ public class Asteroid : MonoBehaviour
 
    public void Hit()
    {
-      
+      SystemEventManager.RaiseEvent(SystemEventManager.ActionType.AsteroidDeath, this);
    }
 
    public void InitAsChild(float radiusOverride)

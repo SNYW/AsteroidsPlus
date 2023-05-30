@@ -28,6 +28,7 @@ public static class AsteroidManager
         asteroid.transform.position = position;
         asteroid.gameObject.SetActive(true);
         if(overrideRadius) asteroid.InitAsChild(radius);
+        SystemEventManager.RaiseEvent(SystemEventManager.ActionType.AsteroidSpawn, asteroid);
     }
 
     public static void SpawnChildAsteroids(int amount, Vector2 position)

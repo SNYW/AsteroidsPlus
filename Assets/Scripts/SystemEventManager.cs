@@ -22,6 +22,7 @@ public static class SystemEventManager
    public enum ActionType
    {
       AsteroidDeath,
+      AsteroidSpawn,
       ShipUpgraded
    }
 }
