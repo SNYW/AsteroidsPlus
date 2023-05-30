@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour
 
    private void Awake()
    {
+      highScoreText.text = $"High Score: {PlayerPrefs.GetInt("HighScore")}";
+      scoreText.text = "Score: 0";
+      
       _currentAsteroids = 0;
       _currentLevel = 1;
       ShipUpgradeManager.Init();
@@ -111,7 +114,8 @@ public class GameManager : MonoBehaviour
       _currentLevel = 1;
       _currentExp = 0;
       score = 0;
-      
+
+      scoreText.text = "Score: 0";
       ShipUpgradeManager.Init();
       ObjectPoolManager.InitPools();
       AsteroidManager.Init(asteroidSpawnX, asteroidSpawnY);
