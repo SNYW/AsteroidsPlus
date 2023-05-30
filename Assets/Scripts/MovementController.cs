@@ -1,20 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
-    [SerializeField] private Vector2 maxBounds;
     [SerializeField] private float speed;
     [SerializeField] private float turnRate;
+    [SerializeField] private Animation _animation;
 
     private Rigidbody2D _rb;
-    private LineRenderer _lr;
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _lr = GetComponentInChildren<LineRenderer>();
     }
 
     void Update()
@@ -28,6 +24,7 @@ public class MovementController : MonoBehaviour
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             _rb.AddForce(transform.up * speed, ForceMode2D.Force);
+            _animation.Play();
         }
 
         if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)))

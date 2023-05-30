@@ -39,6 +39,7 @@ public static class AsteroidManager
         var hitParticles = ObjectPoolManager.GetPool(ObjectPool.ObjectPoolName.AsteroidHitParticles).GetPooledObject()
             .GetComponent<ParticleSystem>();
         
+        hitParticles.transform.position = asteroid.transform.position;
         hitParticles.gameObject.SetActive(true);
         hitParticles.Play();
         asteroid.gameObject.SetActive(false);
