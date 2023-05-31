@@ -613,7 +613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLevel: 20
-  expPerLevel: 10
+  expPerLevel: 6
   maxAsteroidsPerLevel: 4
   asteroidSpawnDelay: 1.5
   asteroidSpawnY: 500
