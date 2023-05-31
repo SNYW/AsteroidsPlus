@@ -14,10 +14,9 @@ public class UIManager : MonoBehaviour
     {
         switch (type)
         {
-            case SystemEventManager.ActionType.LevelUp:
-                UpgradePanel.SetActive(true);
-                break;
-            case SystemEventManager.ActionType.ShipUpgraded:
+            case SystemEventManager.ActionType.ShipUpgraded 
+                or SystemEventManager.ActionType.ExpGained
+                or SystemEventManager.ActionType.LevelUp:
                 UpgradePanel.SetActive(ShipUpgradeManager.CanUpgradeAny());
                 break;
             case SystemEventManager.ActionType.GameReset:

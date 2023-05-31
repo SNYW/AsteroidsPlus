@@ -1,4 +1,5 @@
 using System.Collections;
+using GameData;
 using TMPro;
 using UnityEngine;
 
@@ -21,7 +22,6 @@ public class GameManager : MonoBehaviour
    [SerializeField] private TMP_Text scoreText;
    [SerializeField] private TMP_Text highScoreText;
 
-   private int _currentAsteroids;
    private int _currentLevel;
    private int _currentExp;
    private bool _isMaxLevel;
@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
       highScoreText.text = $"High Score: {PlayerPrefs.GetInt("HighScore")}";
       scoreText.text = "Score: 0";
       
-      _currentAsteroids = 0;
       _currentLevel = 1;
       ShipUpgradeManager.Init();
       ObjectPoolManager.InitPools();
@@ -45,11 +44,7 @@ public class GameManager : MonoBehaviour
       switch (type)
       {
          case SystemEventManager.ActionType.AsteroidDeath when payload is Asteroid:
-            _currentAsteroids--;
             ManageLevel();
-            break;
-         case SystemEventManager.ActionType.AsteroidSpawn when payload is Asteroid:
-            _currentAsteroids++;
             break;
          case SystemEventManager.ActionType.GameReset:
             OnPlayerDeath();
@@ -88,7 +83,11 @@ public class GameManager : MonoBehaviour
    {
       while(gameState == GameState.Playing)
       {
-         if(_currentAsteroids <= maxAsteroidsPerLevel)
+         var currentAsteroids = ObjectPoolManager.GetPool(ObjectPool.ObjectPoolName.Asteroids).GetActiveAmount();
+         Debug.Log(currentAsteroids <= maxAsteroidsPerLevel+_currentLevel);
+         Debug.Log(currentAsteroids);
+         Debug.Log(maxAsteroidsPerLevel);
+         if(currentAsteroids <= maxAsteroidsPerLevel)
          {
             AsteroidManager.SpawnNewAsteroid();
          }
@@ -110,7 +109,6 @@ public class GameManager : MonoBehaviour
       }
       highScoreText.text = $"High Score: {PlayerPrefs.GetInt("HighScore")}";
       
-      _currentAsteroids = 0;
       _currentLevel = 1;
       _currentExp = 0;
       score = 0;
