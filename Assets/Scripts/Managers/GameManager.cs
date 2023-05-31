@@ -84,9 +84,6 @@ public class GameManager : MonoBehaviour
       while(gameState == GameState.Playing)
       {
          var currentAsteroids = ObjectPoolManager.GetPool(ObjectPool.ObjectPoolName.Asteroids).GetActiveAmount();
-         Debug.Log(currentAsteroids <= maxAsteroidsPerLevel+_currentLevel);
-         Debug.Log(currentAsteroids);
-         Debug.Log(maxAsteroidsPerLevel);
          if(currentAsteroids <= maxAsteroidsPerLevel)
          {
             AsteroidManager.SpawnNewAsteroid();

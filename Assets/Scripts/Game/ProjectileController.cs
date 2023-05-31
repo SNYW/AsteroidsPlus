@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -27,7 +26,7 @@ public class ProjectileController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && _canShoot)
+        if (Input.GetKey(KeyCode.Space) && _canShoot)
         {
             StartCoroutine(Shoot());
         }

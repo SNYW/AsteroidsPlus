@@ -1,12 +1,9 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer shieldSprite;
-    [SerializeField] private float shieldFadeSpeed;
     [SerializeField] private float shieldRegenTime;
     
     private Collider2D _collider;

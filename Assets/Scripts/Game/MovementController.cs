@@ -26,8 +26,7 @@ public class MovementController : MonoBehaviour
     {
         ManageMovement();
     }
-
-
+    
     private void ManageMovement()
     {
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))

@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class Bullet : Projectile
 {
     private void Update()
