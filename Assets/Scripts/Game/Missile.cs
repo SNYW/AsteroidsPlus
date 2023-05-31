@@ -22,7 +22,7 @@ public class Missile : Projectile
         Vector3 vectorToTarget = _targetAsteroid.transform.position - transform.position;
         Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: vectorToTarget);
 
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 200 * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 300 * Time.deltaTime);
 
         _rb.AddForce((_targetAsteroid.transform.position-transform.position).normalized*speed*100*Time.deltaTime, ForceMode2D.Force);
     }

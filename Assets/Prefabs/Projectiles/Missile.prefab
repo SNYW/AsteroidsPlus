@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1174dde45d2a89449a02ffcceb6e239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 18
   lifetime: 20
 --- !u!50 &4420779857758045626
 Rigidbody2D:
@@ -211,8 +211,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_Mass: 0.1
+  m_LinearDrag: 0.8
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -233,6 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requireVisible: 0
+  canCollideOffscreen: 0
   wrapDelay: 0.2
 --- !u!1 &3498805371080774076
 GameObject:
