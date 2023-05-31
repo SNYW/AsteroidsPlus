@@ -29,7 +29,7 @@ public static class ShipUpgradeManager
       switch (type)
       {
          case SystemEventManager.ActionType.LevelUp:
-            if(!CanUpgradeAny()) _upgradePoints++;
+            _upgradePoints++;
             break;
       }
    }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -17,6 +18,7 @@ public class UIManager : MonoBehaviour
             case SystemEventManager.ActionType.ShipUpgraded 
                 or SystemEventManager.ActionType.ExpGained
                 or SystemEventManager.ActionType.LevelUp:
+                Debug.Log(ShipUpgradeManager.CanUpgradeAny());
                 UpgradePanel.SetActive(ShipUpgradeManager.CanUpgradeAny());
                 break;
             case SystemEventManager.ActionType.GameReset:
