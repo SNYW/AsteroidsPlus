@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
 
    private void ResetGame()
    {
-      StopCoroutine(SpawnUFO());
+      StopAllCoroutines();
       UFO.gameObject.SetActive(false);
       
       if (PlayerPrefs.GetInt("HighScore") < score)
@@ -138,6 +138,7 @@ public class GameManager : MonoBehaviour
       ObjectPoolManager.InitPools();
       AsteroidManager.Init(asteroidSpawnX, asteroidSpawnY, true);
       StartCoroutine(SpawnUFO());
+      StartCoroutine(SpawnAsteroid());
    }
    
 }

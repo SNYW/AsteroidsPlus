@@ -40,12 +40,6 @@ public class Missile : Projectile
             .GetAllActive()
             .OrderBy(ast => Vector2.Distance(transform.position, ast.transform.position)).ToArray();
 
-        if (!allAsteroids[0].transform.IsVisibleToCamera(Camera.main, null))
-        {
-            gameObject.SetActive(false);
-            return;
-        }
-        
         _targetAsteroid = allAsteroids[0].GetComponent<Asteroid>();
     }
 }
