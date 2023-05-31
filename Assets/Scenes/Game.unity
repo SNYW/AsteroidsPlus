@@ -615,7 +615,7 @@ MonoBehaviour:
   maxLevel: 20
   expPerLevel: 10
   maxAsteroidsPerLevel: 4
-  asteroidSpawnDelay: 0.2
+  asteroidSpawnDelay: 1.5
   asteroidSpawnY: 500
   asteroidSpawnX: 600
   gameState: 2
@@ -1630,7 +1630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3004310467153111834, guid: 0e445e2d091ea2242b5df97ad55b234c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -53.61
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3004310467153111834, guid: 0e445e2d091ea2242b5df97ad55b234c, type: 3}
       propertyPath: m_LocalPosition.y

@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
    {
       while(gameState == GameState.Playing)
       {
-         if(_currentAsteroids < maxAsteroidsPerLevel*_currentLevel)
+         if(_currentAsteroids <= maxAsteroidsPerLevel)
          {
             AsteroidManager.SpawnNewAsteroid();
          }
