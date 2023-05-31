@@ -1,4 +1,4 @@
-# Trailmix Test Notes
+# Asteroids Notes
 
 #### Thank you for taking the time to evaluate my test project! I had a lot of fun on this one (and got a bit carried away). 
 Below are descriptions of challenges I faced during development and justifications for my architectural decisions.
