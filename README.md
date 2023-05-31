@@ -8,8 +8,8 @@ Below are descriptions of challenges I faced during development and justificatio
 
 Object pooling is a no brainer for a game with the potential to have many reusable objects. My specific implementation uses scaling pool sizes 
 with a minimum amount. All the data for these pools are kept in Pool Scriptable Objects that work with any GameObject. They are loaded 
-directly from resources when the game starts. 
-This system allows for a very small initial pool, that will scale based on how many objects are required.
+directly from resources when the game starts. The implementaton allows for a very small initial pool, 
+that will scale based on how many objects are required.
 
 This system worked really well, it is extremely fast to add a new pool, the pools can be as small or as large as needed, and once I had written this code
 I didn't really need to adjust the core of it at any point in development
@@ -37,19 +37,17 @@ potential improvements:
 
 3. Screen Wrapping
 
-I tried to implement a solution here without looking anything up, it works fine as long as things don't start colliding offscreen, then they can
-get launched into space and just flip back and forth, making the player unable to progress. I have a fix in mind for this, but I am sure there is 
-a more elegant solution I could use. I think calculating the bounds is actually quite an elegant solution, and there is potential to have the bounds 
-extend to account for the size of an object, and use it for more direct calculations, or to teleport stuck objects somewhere less stuck.
+I tried to implement a solution here without looking anything up. I think calculating the bounds is actually quite an elegant solution, and there is 
+potential to have the bounds extend to account for the size of an object, and use it for more direct calculations, 
+or to teleport stuck objects somewhere less stuck.
 
-I also found out that Unity's Renderer.IsVisible includes the scene view, which means that if something does break, observing it in the screen view often 
-fixes it. Making every asteroid a quantum entity turns out to make it very hard to debug anything that happens offscreen!
+I also found out that Unity's Renderer.IsVisible includes the scene view, which means that if something does break, observing it often 
+fixes it. Making every asteroid behave like a quantum particle turns can make it very hard to debug anything that happens offscreen!
 
 Overall, I think the solution is OK, with the addition of not allowing offscreen collisions, I am happy with it
 
 potential improvements:
 	- The Bounds could be used to account for stuck objects, and teleport them back into the play space
-	- Don't implement math based things without looking anyting up!
 
 
 4. Asteroid Randomisation
@@ -87,7 +85,7 @@ In this case since I only had very few buttons and very little input to manage, 
 for movement and shooting really don't require multiple mappings and there's not much point implementing events for buttons that are only
 used in one place.
 
-### This was a really fun task! I will add a few more tweaks and bugfixes as I play it more and test it, inc one for the offscreen asteroids
+### This was a really fun task! I will add a few more tweaks and bugfixes as I play it more and test it.
 Thanks again for taking the time to appraise my work, and I look forward to discussing it!
 
 
