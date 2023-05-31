@@ -9,11 +9,12 @@ public static class AsteroidManager
     private static float _asteroidSpawnY;
     private static float _asteroidSpawnX;
 
-    public static void Init(float spawnX, float spawnY)
+    public static void Init(float spawnX, float spawnY, bool isReset)
     {
         _asteroidSpawnX = spawnX;
         _asteroidSpawnY = spawnY;
-        SystemEventManager.Subscribe(OnGameEvent);
+        if(!isReset)
+            SystemEventManager.Subscribe(OnGameEvent);
     }
 
     public static void SpawnNewAsteroid()

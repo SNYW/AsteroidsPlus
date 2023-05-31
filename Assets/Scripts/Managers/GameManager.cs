@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
       _currentLevel = 1;
       ShipUpgradeManager.Init();
       ObjectPoolManager.InitPools();
-      AsteroidManager.Init(asteroidSpawnX, asteroidSpawnY);
+      AsteroidManager.Init(asteroidSpawnX, asteroidSpawnY, false);
       SystemEventManager.Subscribe(OnGameAction);
    }
 
@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
       scoreText.text = "Score: 0";
       ShipUpgradeManager.Init();
       ObjectPoolManager.InitPools();
-      AsteroidManager.Init(asteroidSpawnX, asteroidSpawnY);
+      AsteroidManager.Init(asteroidSpawnX, asteroidSpawnY, true);
    }
    
 }
