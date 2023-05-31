@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requireVisible: 0
+  canCollideOffscreen: 1
   wrapDelay: 0.2
 --- !u!50 &2051100063
 Rigidbody2D:

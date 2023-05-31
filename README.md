@@ -6,9 +6,10 @@ Below are descriptions of challenges I faced during development and justificatio
 
 1. Object Pooling
 
-Object pooling is a no brainder for a game with the potential to have many reusable objects. My specific implementation uses scaling pool sizes 
-with a minimum amount. All the data for these pools are kept in individual Pool Scriptable Objects that can pool any GameObject. They are loaded 
-directly from resources when the game starts. This system allows for a very small initial pool, that will scale based on how many objects are required.
+Object pooling is a no brainer for a game with the potential to have many reusable objects. My specific implementation uses scaling pool sizes 
+with a minimum amount. All the data for these pools are kept in Pool Scriptable Objects that work with any GameObject. They are loaded 
+directly from resources when the game starts. 
+This system allows for a very small initial pool, that will scale based on how many objects are required.
 
 This system worked really well, it is extremely fast to add a new pool, the pools can be as small or as large as needed, and once I had written this code
 I didn't really need to adjust the core of it at any point in development
