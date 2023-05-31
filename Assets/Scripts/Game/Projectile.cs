@@ -25,9 +25,11 @@ public class Projectile : MonoBehaviour
     }
     protected void OnCollisionEnter2D(Collision2D col)
     {
-        if (!col.gameObject.TryGetComponent<Asteroid>(out var asteroid)) return;
+        if (col.gameObject.TryGetComponent<Asteroid>(out var asteroid))
+        {
+            asteroid.Hit();
+        }
         
-        asteroid.Hit();
         StopAllCoroutines();
         gameObject.SetActive(false);
     }

@@ -71,7 +71,8 @@ namespace GameData
             Asteroids,
             Bullets,
             Missiles,
-            AsteroidHitParticles
+            AsteroidHitParticles,
+            UFOShots
         }
     }
 }

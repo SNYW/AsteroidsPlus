@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
    [SerializeField] private float asteroidSpawnDelay;
    [SerializeField] private float asteroidSpawnY;
    [SerializeField] private float asteroidSpawnX;
+   [SerializeField] private UFO UFO;
+   [SerializeField] private float UFOSpawnTime;
+   [SerializeField] private float UFOX;
+   [SerializeField] private RangeFloat UFOMinMaxY;
    [SerializeField] private GameState gameState;
    [SerializeField] private TMP_Text scoreText;
    [SerializeField] private TMP_Text highScoreText;
@@ -77,6 +81,22 @@ public class GameManager : MonoBehaviour
    {
       gameState = GameState.Playing;
       StartCoroutine(SpawnAsteroid());
+      StartCoroutine(SpawnUFO());
+   }
+
+   private IEnumerator SpawnUFO()
+   {
+      while(gameState == GameState.Playing)
+      {
+         yield return new WaitForSeconds(UFOSpawnTime);
+         if (UFO.gameObject.activeSelf) continue;
+         
+         var spawnx = Random.Range(0, 1) >= 0.5f ? UFOX : -UFOX;
+         var spawny = UFOMinMaxY.RandomValue();
+         var spawnPos = new Vector2(spawnx, spawny);
+         UFO.transform.position = spawnPos;
+         UFO.gameObject.SetActive(true);
+      }
    }
 
    private IEnumerator SpawnAsteroid()
@@ -93,13 +113,16 @@ public class GameManager : MonoBehaviour
       }
    }
 
-   public void OnPlayerDeath()
+   private void OnPlayerDeath()
    {
       ResetGame();
    }
 
    private void ResetGame()
    {
+      StopCoroutine(SpawnUFO());
+      UFO.gameObject.SetActive(false);
+      
       if (PlayerPrefs.GetInt("HighScore") < score)
       {
          PlayerPrefs.SetInt("HighScore", score);
@@ -109,11 +132,12 @@ public class GameManager : MonoBehaviour
       _currentLevel = 1;
       _currentExp = 0;
       score = 0;
-
       scoreText.text = "Score: 0";
+      
       ShipUpgradeManager.Init();
       ObjectPoolManager.InitPools();
       AsteroidManager.Init(asteroidSpawnX, asteroidSpawnY, true);
+      StartCoroutine(SpawnUFO());
    }
    
 }
